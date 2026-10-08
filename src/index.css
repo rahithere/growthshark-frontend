@@ -1,0 +1,6 @@
+@import "tailwindcss";
+@layer utilities {
+    .bg-gradient-radial {
+        background-image: radial-gradient(transparent, #3b82f6, transparent);
+    }
+}
