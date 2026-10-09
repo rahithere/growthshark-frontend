@@ -22,7 +22,7 @@ const Admin = () => {
             setError("");
 
             // const baseUrl = import.meta.env.VITE_API_URL
-            const baseUrl = "https://growth-shark-backend-3aiw.onrender.com"
+            const baseUrl = import.meta.env.VITE_API_URL
             const response = await fetch(
                 `${baseUrl}/api/admin/submissions`
             );
