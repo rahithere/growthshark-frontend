@@ -16,10 +16,30 @@ export default function Career() {
 
   function handleChange(e) {
     const { name, value, files } = e.target;
+
     if (name === "resume") {
-      setFormData((prev) => ({ ...prev, resume: files[0] }));
+      const file = files?.[0];
+
+      if (!file) return;
+
+      if (
+        file.type !== "application/pdf" ||
+        !file.name.toLowerCase().endsWith(".pdf")
+      ) {
+        alert("Please upload a PDF file only.");
+        e.target.value = "";
+        return;
+      }
+
+      setFormData((prev) => ({
+        ...prev,
+        resume: file,
+      }));
     } else {
-      setFormData((prev) => ({ ...prev, [name]: value }));
+      setFormData((prev) => ({
+        ...prev,
+        [name]: value,
+      }));
     }
   }
 
@@ -172,7 +192,7 @@ export default function Career() {
                 <input
                   type="file"
                   name="resume"
-                  accept=".pdf,.doc,.docx"
+                  accept=".pdf"
                   onChange={handleChange}
                   required
                   className="w-full text-gray-800"

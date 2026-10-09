@@ -6,7 +6,8 @@ const AdminHeader = () => {
     const navigate = useNavigate()
     const handleLogout = async () => {
         try {
-            const response = await fetch("http://localhost:5000/api/admin/logout",
+            const baseUrl = import.meta.env.VITE_API_URL
+            const response = await fetch(`${baseUrl}/api/admin/logout`,
                 {
                     method: "POST",
                     credentials: "include"
