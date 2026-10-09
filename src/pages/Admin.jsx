@@ -24,7 +24,10 @@ const Admin = () => {
             // const baseUrl = import.meta.env.VITE_API_URL
             const baseUrl = import.meta.env.VITE_API_URL
             const response = await fetch(
-                `${baseUrl}/api/admin/submissions`
+                `${baseUrl}/api/admin/submissions`, {
+                method: "GET",
+                credentials: "include"
+            }
             );
 
             if (!response.ok) {
