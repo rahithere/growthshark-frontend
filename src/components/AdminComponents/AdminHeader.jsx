@@ -1,4 +1,4 @@
-import { useNavigate, replace } from "react-router-dom";
+import { useNavigate, replace, NavLink } from "react-router-dom";
 import logo from "../../assets/logo.png"
 
 const AdminHeader = () => {
@@ -36,14 +36,28 @@ const AdminHeader = () => {
                     className="w-[120px] object-contain"
                 />
 
-                {/* Logout */}
-                <button
-                    type="button"
-                    className="rounded-full bg-[#A8F000] px-6 py-3 text-sm font-bold uppercase tracking-wide text-black shadow-[0_4px_10px_rgba(0,0,0,0.2)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_6px_14px_rgba(0,0,0,0.25)] active:translate-y-0"
-                    onClick={handleLogout}
-                >
-                    Logout
-                </button>
+                <div className="flex items-center gap-4">
+                    <NavLink
+                        to="/admin/blogs"
+                        className={({ isActive }) =>
+                            `text-sm font-medium transition-colors duration-100 text-decoration-line: underline ${isActive
+                                ? "text-[#A8F000]"
+                                : "text-[#0a0a0a]"
+                            }`
+                        }
+                    >
+                        Blogs
+                    </NavLink>
+
+                    {/* Logout */}
+                    <button
+                        type="button"
+                        className="rounded-full bg-[#A8F000] px-6 py-3 text-sm font-bold uppercase tracking-wide text-black shadow-[0_4px_10px_rgba(0,0,0,0.2)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_6px_14px_rgba(0,0,0,0.25)] active:translate-y-0"
+                        onClick={handleLogout}
+                    >
+                        Logout
+                    </button>
+                </div>
 
             </div>
         </header>

@@ -49,6 +49,7 @@ import Admin from "./pages/Admin.jsx";
 import AdminLogin from "./pages/adminAuth/AdminLogin.jsx";
 import AdminRegister from "./pages/adminAuth/AdminRegister.jsx";
 import AdminProtectedRoute from "./pages/adminAuth/AdminProtectedRoute.jsx";
+import AdminBlogs from "./pages/AdminBlogs.jsx";
 
 
 // Canonical Helmet
@@ -218,6 +219,14 @@ function AppRouter() {
 
   if (location.pathname === "/admin/register") {
     return <AdminRegister />
+  }
+
+  if (location.pathname === "/admin/blogs") {
+    return (
+      <AdminProtectedRoute>
+        <AdminBlogs />
+      </AdminProtectedRoute>
+    );
   }
 
   if (location.pathname === "/admin") {
