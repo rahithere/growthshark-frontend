@@ -50,6 +50,7 @@ import AdminLogin from "./pages/adminAuth/AdminLogin.jsx";
 import AdminRegister from "./pages/adminAuth/AdminRegister.jsx";
 import AdminProtectedRoute from "./pages/adminAuth/AdminProtectedRoute.jsx";
 import AdminBlogs from "./pages/AdminBlogs.jsx";
+import AdminBlogDetails from "./pages/AdminBlogDetail.jsx";
 
 
 // Canonical Helmet
@@ -228,6 +229,20 @@ function AppRouter() {
       </AdminProtectedRoute>
     );
   }
+
+  if (
+    location.pathname.startsWith("/admin/blogs") &&
+    location.pathname !== "/admin/blogs/create"
+  ) {
+
+    const slug = decodeURIComponent(location.pathname.split("/")[3] || "")
+    return (
+      <AdminProtectedRoute>
+        <AdminBlogDetails slug={slug} />
+      </AdminProtectedRoute>
+    )
+  }
+
 
   if (location.pathname === "/admin") {
     return (

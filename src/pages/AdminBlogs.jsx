@@ -158,7 +158,7 @@ const AdminBlogs = () => {
                             <article
                                 key={blog._id}
                                 onClick={() =>
-                                    navigate(`/admin/blogs/${blog._id}`)
+                                    navigate(`/admin/blogs/${blog.slug}`)
                                 }
                                 onKeyDown={(event) => {
                                     if (
@@ -166,7 +166,7 @@ const AdminBlogs = () => {
                                         event.key === " "
                                     ) {
                                         event.preventDefault();
-                                        navigate(`/admin/blogs/${blog._id}`);
+                                        navigate(`/admin/blogs/${blog.slug}`);
                                     }
                                 }}
                                 role="link"
@@ -221,10 +221,6 @@ const AdminBlogs = () => {
                                     </p>
 
                                     <div className="mt-5 flex items-center justify-between border-t border-[#292524] pt-4">
-                                        <span className="text-xs text-[#78716C]">
-                                            /{blog.slug}
-                                        </span>
-
                                         <span className="text-sm font-medium text-[#A8F000]">
                                             View details →
                                         </span>

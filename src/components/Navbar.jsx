@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaBars, FaTimes, FaChevronDown } from "react-icons/fa";
+import { UserRound } from "lucide-react";
 import { motion } from "framer-motion";
 import logo from "../assets/logo.png";
 
@@ -296,10 +297,27 @@ export default function Navbar({ toggleMode, isStealth }) {
         {/* Toggle Button */}
         <button
           onClick={handleToggleMode}
-          className="ml-6 px-5 py-2 rounded-full bg-lime-400 text-black font-bold shadow-lg shadow-black/50 hover:brightness-110 transition hidden md:flex cursor-pointer"
+          className="ml-4 px-2 py-2 rounded-full bg-lime-400 text-black font-bold shadow-lg shadow-black/50 hover:brightness-110 transition hidden md:flex cursor-pointer"
         >
           {isStealth ? "TOGGLE ATTACK MODE" : "TOGGLE STEALTH MODE"}
         </button>
+
+        {/* //admin link */}
+        <Link
+          to="/admin"
+          aria-label="Admin dashboard"
+          title="Admin"
+          className="group flex h-10 w-10 items-center justify-center
+          rounded-full border border-stone-700 text-stone-400
+          transition-all duration-200 "
+        >
+          <UserRound
+            size={19}
+            strokeWidth={1.8}
+            color="#A8F000"
+            className="transition-transform duration-200 group-hover:scale-110 "
+          />
+        </Link>
 
         {/* Mobile Menu Toggle */}
         <div className="md:hidden flex items-center">

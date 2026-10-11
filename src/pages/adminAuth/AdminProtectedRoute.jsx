@@ -30,7 +30,7 @@ const AdminProtectedRoute = ({ children }) => {
     }, []);
 
     if (loading) {
-        return <div>Checking authentication...</div>;
+        return <div className="min-h-screen bg-black text-white px-10 py-10">Checking authentication...</div>;
     }
 
     if (!isAuthenticated) {
