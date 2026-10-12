@@ -51,7 +51,7 @@ import AdminRegister from "./pages/adminAuth/AdminRegister.jsx";
 import AdminProtectedRoute from "./pages/adminAuth/AdminProtectedRoute.jsx";
 import AdminBlogs from "./pages/AdminBlogs.jsx";
 import AdminBlogDetails from "./pages/AdminBlogDetail.jsx";
-
+import AdminBlogCreate from "./pages/CreateBlog.jsx";
 
 // Canonical Helmet
 function CanonicalHelmet() {
@@ -241,6 +241,18 @@ function AppRouter() {
         <AdminBlogDetails slug={slug} />
       </AdminProtectedRoute>
     )
+  }
+
+  if (
+    location.pathname === "/admin/blogs/create"
+  ) {
+    return (
+      <AdminProtectedRoute>
+        <AdminBlogCreate />
+      </AdminProtectedRoute>
+    )
+
+
   }
 
 

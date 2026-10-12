@@ -14,10 +14,42 @@ const AdminBlogDetails = ({ slug }) => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState("");
     const [deleting, setDeleting] = useState(false);
+    const [publishing, setPublishing] = useState(false)
 
     const API = (
         import.meta.env.VITE_API_URL || "http://localhost:5000"
     ).replace(/\/$/, "");
+
+    const publishBlog = async (slug) => {
+        try {
+            setPublishing(true)
+            setError("")
+            const response = await fetch(`${API}/api/blogs/${slug}/publish`, {
+                method: 'PATCH',
+                credentials: "include",
+            })
+
+            const data = response.json()
+
+            if (!response.ok) {
+                setError(data.message || "Failed to publish blog")
+            }
+
+            //update the blog
+
+            setBlog((prev) => ({
+                ...prev,
+                status: "published",
+                publishedAt: data.data?.publishedAt || new Date().toISOString()
+            }))
+
+        } catch (error) {
+            setError(error.message || "Failed to publish blog")
+        } finally {
+            setPublishing(false)
+        }
+
+    }
 
     useEffect(() => {
         const fetchBlog = async () => {
@@ -193,10 +225,25 @@ const AdminBlogDetails = ({ slug }) => {
                                 Article content
                             </h2>
 
-                            <div className="whitespace-pre-wrap break-words text-sm leading-8 text-[#D6D3D1]">
-                                {blog.content}
-                            </div>
+                            <div
+                                className="prose prose-invert max-w-none break-words text-[#D6D3D1]"
+                                dangerouslySetInnerHTML={{ __html: blog.content }}
+                            />
                         </section>
+
+                        {blog.status === "draft" && (
+                            <button
+                                type="button"
+                                onClick={() => publishBlog(blog.slug)}
+                                disabled={publishing}
+                                className="rounded-lg bg-[#A8F000] px-4 py-2.5
+                                        text-sm font-semibold text-black
+                                        transition-colors hover:bg-lime-300
+                                        disabled:cursor-not-allowed disabled:opacity-50 mt-6 "
+                            >
+                                {publishing ? "Publishing..." : "Publish Blog"}
+                            </button>
+                        )}
 
                         {error && (
                             <p className="mt-4 text-sm text-red-400">
